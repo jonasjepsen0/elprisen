@@ -1,6 +1,7 @@
 import { API_URL } from "../data/api";
+import { getRegion } from "./region";
 
-export async function getCurrentData(date = new Date(), region = "DK2"){
+export async function getCurrentData(date = new Date(), region = getRegion()){
 
     const year = date.getFullYear()
     const month = String(date.getMonth() + 1).padStart(2, "0")
