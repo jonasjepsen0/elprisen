@@ -1,0 +1,26 @@
+@use "../../../style/variables" as *;
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modalStyle {
+    position: relative;
+    width: 45rem;
+    height: 33rem;
+    background-color: $background;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
+.close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.75rem;
+    color: $green;
+}

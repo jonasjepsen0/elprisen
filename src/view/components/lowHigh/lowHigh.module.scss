@@ -1,0 +1,30 @@
+@use "../../../style/variables" as *;
+
+.lowHighStyle {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 3.5rem 0 2rem;
+    text-align: center;
+    text-transform: uppercase;
+
+    p {
+        margin: 0;
+    }
+}
+
+.circle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 1.5rem;
+    border: 1px dashed $green;
+    border-radius: 50%;
+    background-color: $dark;
+    box-shadow: 0 0 0 0.5rem $dark;
+}
+
+.unit {
+    font-size: 0.6rem;
+}

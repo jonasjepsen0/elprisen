@@ -1,1 +1,1 @@
-export const API_URL = ''
+export const API_URL = 'https://www.elprisenligenu.dk/api/v1/prices'

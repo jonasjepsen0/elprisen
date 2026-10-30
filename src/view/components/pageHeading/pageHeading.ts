@@ -1,3 +1,5 @@
+import styles from "./pageHeading.module.scss";
+
 export function pageHeading(text: any){
-    return `<h1>${text}</h1>`
+    return `<h1 class="${styles.headingStyle}">${text}</h1>`
 }

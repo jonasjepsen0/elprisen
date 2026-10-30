@@ -1,0 +1,58 @@
+@use "../../../style/variables" as *;
+
+.settingsStyle {
+    max-width: 16rem;
+    margin: 6rem auto 0;
+
+    label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+        font-size: 0.85rem;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    input {
+        appearance: none;
+        position: relative;
+        width: 4rem;
+        height: 1.9rem;
+        margin: 0;
+        border: 1px dashed transparent;
+        border-radius: 1rem;
+        background-color: $dark;
+        cursor: pointer;
+    }
+
+    input::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1.9rem;
+        height: 1.9rem;
+        border-radius: 50%;
+        background-color: $green;
+    }
+
+    input:checked {
+        border-color: $green;
+    }
+
+    input:checked::before {
+        left: calc(100% - 1.9rem);
+    }
+
+    select {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.6rem;
+        background-color: $dark;
+        color: $light;
+        font-family: inherit;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+}

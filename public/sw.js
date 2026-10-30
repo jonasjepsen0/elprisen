@@ -3,6 +3,7 @@ const CACHE = "static-v1";
 const FILES = [
   "./",
   "./index.html",
+  "./fallback.html",
   "./manifest.json",
   "./icons/192.png",
   "./icons/512.png",
@@ -24,41 +25,23 @@ self.addEventListener("activate", () => {
 
 self.addEventListener("fetch", (event) => {
 
-  if (event.request.url.startsWith(self.location.origin)) {
+  event.respondWith(fetch(event.request).then((networkResponse) => {
 
-    event.respondWith(
-      caches.match(event.request).then((response) => {
+      const copy = networkResponse.clone();
 
-        if (response) {
+      caches.open(CACHE).then((cache) => cache.put(event.request, copy));
 
-          return response;
-        } 
-        
-        else {
-          return fetch(event.request).then((networkResponse) => {
+      return networkResponse;
 
-            const copy = networkResponse.clone();
+    }).catch(() => caches.match(event.request).then((cacheResponse) => {
 
-            caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+      if (cacheResponse) {
+        return cacheResponse;
+      }
 
-            return networkResponse;
-          });
-        }
-      })
-    );
-
-  } else {
-
-    event.respondWith(fetch(event.request).then((networkResponse) => {
-
-        const copy = networkResponse.clone();
-
-        caches.open(CACHE).then((cache) => cache.put(event.request, copy));
-
-        return networkResponse;
-
-      }).catch(() => caches.match(event.request))
-    );
-
-  }
+      if (event.request.mode === "navigate") {
+        return caches.match("./fallback.html");
+      }
+    }))
+  );
 });
